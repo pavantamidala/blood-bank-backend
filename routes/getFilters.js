@@ -1,4 +1,4 @@
-
+const userSchema = require('../models//userSchema')
 const BLOOD_GROUP = "Blood Group";
 
 const BLOOD_CELLS = "Blood Celss";
@@ -21,8 +21,19 @@ function getFilters(req, res) {
     [GENDER]:['Male','Female','Others'],
     [LOCATION]:[]
     }
+    userSchema.find({},(err,doc)=>{
+        if(err){
+            console.log(err)
+        }
+        console.log('all')
+        console.log(doc)
+        let addr = doc.map((obj)=>{
+            return obj.formatted_address?obj.formatted_address: ''
+        }).filter(val=>val!='' )
+    payload.Location = addr
     res.json(JSON.stringify(payload))
     res.end()
+    })
 }
 
 module.exports = getFilters;
