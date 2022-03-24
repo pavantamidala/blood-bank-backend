@@ -1,7 +1,7 @@
 const userSchema = require('../models//userSchema')
 const BLOOD_GROUP = "Blood Group";
 
-const BLOOD_CELLS = "Blood Celss";
+const BLOOD_CELLS = "Blood Cells";
 
 // export const BLOOD_GROUP = ''
 

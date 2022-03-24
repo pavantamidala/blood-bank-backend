@@ -10,7 +10,7 @@ const USER_EXIST = "username already exist";
 const EMAIL_TAKEN = "email already taken";
  const BLOOD_GROUP = "Blood Group";
 
- const BLOOD_CELLS = "Blood Celss";
+ const BLOOD_CELLS = "Blood Cells";
 
 // export const BLOOD_GROUP = ''
 
