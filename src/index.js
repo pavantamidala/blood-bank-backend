@@ -28,19 +28,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 const PORT = process.env.PORT || 3000;
 //Unprotected Routes
-app.get("/", (req, res) => {
-  res.send("<h1>Home</h1>");
-});
+app.use(express.static(__dirname + '../public/build'));
+app.use("/static", express.static('./static/'));
+
+
+// Middleware - Check user is Logged in
+const checkUserLoggedIn = (req, res, next) => {
+  req.user ? next() : res.redirect('/auth/google');
+};
+
 
 app.get("/failed", (req, res) => {
   res.send("<h1>Log in Failed :(</h1>");
 });
 
-// Middleware - Check user is Logged in
-const checkUserLoggedIn = (req, res, next) => {
-  req.user ? next() : res.sendStatus(401);
-};
 
+app.get("/",checkUserLoggedIn, (req, res) => {
+  console.log(__dirname)
+  res.sendFile(__dirname+'/build/index.html');
+});
 //Protected Route.
 app.get("/profile", checkUserLoggedIn, (req, res) => {
   console.log(req.user);
@@ -80,7 +86,7 @@ app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/failed" }),
   function (req, res) {
-    res.redirect("/profile");
+    res.redirect("/");
   }
 );
 
