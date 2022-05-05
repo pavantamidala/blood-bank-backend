@@ -11,7 +11,8 @@ const bodyParser = require("body-parser");
 const userSchema = require("../models/userSchema");
 const getFilters = require("../routes/getFilters");
 const getBaseData = require("../routes/getBaseData");
-const updateUserDetails = require('../routes/updateUserDetails')
+const updateUserDetails = require('../routes/updateUserDetails');
+const validateAadhar = require("../routes/aadharValidation");
 //Configure Session Storage
 app.use(
   cookieSession({
@@ -64,6 +65,7 @@ app.get("/profile", checkUserLoggedIn, (req, res) => {
 
 app.put("/user-details", checkUserLoggedIn,updateUserDetails );
 
+app.put('/aadhar-validate',validateAadhar)
 app.get("/get-filters", checkUserLoggedIn, getFilters);
 app.put('/get-base-data',checkUserLoggedIn,getBaseData)
 // Auth Routes

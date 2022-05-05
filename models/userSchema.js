@@ -22,6 +22,8 @@ const userSchema = new Schema({
   address: Object,
   formatted_address:String,
   bloodGroup: String,
+  phoneNumber:String,
+  aadhar:String
 });
 
 module.exports = mongoose.model("user", userSchema);

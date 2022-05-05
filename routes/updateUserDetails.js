@@ -15,10 +15,14 @@ const updateUserDetails = (req, res) => {
       dob: req.body.data.dob,
       address: req.body.data.address,
       bloodGroup: req.body.data.bloodGroup,
-      formatted_address: req.body.data.address.formatted_address
+      formatted_address: req.body.data.address.formatted_address,
+      phoneNumber:req.body.data.phoneNumber,
+      aadhar:req.body.data.aadhar
     };
     // console.log(JSON.parse(req.body.data));
     console.log(req.body.data.id);
+    console.log('update')
+    console.log(update)
     let doc = userSchema.findOneAndUpdate(
       { _id: req.body.data.id },
       update,
