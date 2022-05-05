@@ -14,6 +14,7 @@ const getBaseData = require("../routes/getBaseData");
 const updateUserDetails = require('../routes/updateUserDetails');
 const validateAadhar = require("../routes/aadharValidation");
 //Configure Session Storage
+
 app.use(
   cookieSession({
     name: "session-name",
@@ -22,8 +23,9 @@ app.use(
 );
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 //Configure Passport
 app.use(passport.initialize());
 app.use(passport.session());
